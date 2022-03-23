@@ -1,0 +1,53 @@
+<div class="card">
+    <div class="card-header">
+        <h3>{{titulo}}</h3>
+    </div>
+</div>
+
+<div *ngIf="maestros && maestros.length > 0" class="card-body">
+
+    <div class="card-body">
+        <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+            <button class="btn btn-primary" 
+                    type="button"
+                    [routerLink] = "['/maestro/add']"
+            >Agregar maestro</button>
+        </div>
+    </div>
+
+    <table class="table table-success table-striped">
+        <thead>
+            <tr>
+                <th scope="col">Nombre</th>
+                <th scope="col">Apellidos</th>
+                <th scope="col">Edad</th>
+                <th scope="col">Teléfono</th>
+                <th scope="col">Correo</th>
+                <th scope="col">Fecha creación</th>
+                <th scope="col">Fecha actualización</th>
+                <th scope="col">Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let maestro of maestros">
+                <td>{{maestro.nombre}}</td>
+                <td>{{maestro.apellidos}}</td>
+                <td>{{maestro.edad}}</td>
+                <td>{{maestro.telefono}}</td>
+                <td>{{maestro.correo}}</td>
+                <td>{{maestro.created_at | date: 'medium'}}</td>
+                <td>{{maestro.updated_at | date: 'medium'}}</td>
+                <td>
+                    <cfrb-acciones [maestro]="maestro"
+                        (edit)="onEditMaestro($event)"
+                        (delete)="onDeleteMaestro($event)"
+                    >
+                    </cfrb-acciones>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+<div *ngIf="mensajeError" class="alert alert-danger" role="alert">
+    {{mensajeError}}
+</div>

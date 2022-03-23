@@ -1,0 +1,109 @@
+<div class="card">
+    <div class="card-header">
+        <h3>{{titulo}}</h3>
+    </div>
+</div>
+
+<div class="card-body">
+    <form #formAdd="ngForm">
+        <div class="mb-3">
+            <label for="nombre">*Nombre</label>
+            <input 
+                type="text" 
+                class="form-control" 
+                id="nombre" 
+                name="nombre" 
+                placeholder="Ingrese Nombre"
+                [(ngModel)]="model.nombre"
+                #nombre="ngModel"
+                required
+                maxlength="255"
+            />
+            <div *ngIf="nombre.invalid && (nombre.dirty || nombre.touched)" class="alert alert-danger">
+                El campo nombre es requerido
+            </div>
+        </div>
+        <div class="mb-3">
+            <label for="apellidos">*Apellidos</label>
+            <input 
+                type="text" 
+                class="form-control" 
+                id="apellidos" 
+                name="apellidos" 
+                placeholder="Ingrese Apellidos"
+                [(ngModel)]="model.apellidos"
+                #apellidos="ngModel"
+                required
+                maxlength="255"
+            />
+            <div *ngIf="apellidos.invalid && (apellidos.dirty || apellidos.touched)" class="alert alert-danger">
+                El campo apellidos es requerido
+            </div>
+        </div>
+        <div class="mb-3">
+            <label for="edad">*Edad</label>
+            <input 
+                type="number" 
+                class="form-control" 
+                id="edad" 
+                name="edad" 
+                placeholder="Ingrese Edad"
+                [(ngModel)]="model.edad"
+                #edad="ngModel"
+                required
+                min="1"
+                max="99"                
+                step="1"
+            />
+            <div *ngIf="edad.invalid && (edad.dirty || edad.touched)">
+                <div *ngIf="edad.errors?.required" class="alert alert-danger">
+                    El campo edad es requerido
+                </div>
+            </div>
+        </div>
+        <div class="mb-3">
+            <label for="telefono">*Teléfono</label>
+            <input 
+                type="number" 
+                class="form-control" 
+                id="telefono" 
+                name="telefono" 
+                placeholder="Ingrese Teléfono"
+                [(ngModel)]="model.telefono"
+                #telefono="ngModel"
+                required
+                min="1"
+                max="999999999"                
+                step="1"
+            />
+            <div *ngIf="telefono.invalid && (telefono.dirty || telefono.touched)">
+                <div *ngIf="telefono.errors?.required" class="alert alert-danger">
+                    El campo teléfono es requerido
+                </div>
+            </div>
+        </div>
+        <div class="mb-3">
+            <label for="correo">*Correo</label>
+            <input 
+                type="text" 
+                class="form-control" 
+                id="correo" 
+                name="correo" 
+                placeholder="Ingrese Correo"
+                [(ngModel)]="model.correo"
+                #correo="ngModel"
+                required
+                maxlength="255"
+            />
+            <div *ngIf="correo.invalid && (correo.dirty || correo.touched)" class="alert alert-danger">
+                El campo correo es requerido
+            </div>
+        </div>
+        <button type="submit" 
+                class="btn btn-primary"
+                (click)="fnGuardar()"
+                [disabled]="formAdd.form.invalid || formAdd.form.untouched">
+                Guardar
+        </button>
+      </form>
+</div>
