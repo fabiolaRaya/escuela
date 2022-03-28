@@ -3,8 +3,6 @@ import { Maestro } from './../maestro';
 import { FormControl } from '@angular/forms';
 import { MaestroService } from '../maestro.service';
 import { Router } from '@angular/router';
-import { catchError, tap } from 'rxjs/operators';
-import { EMPTY, of } from 'rxjs';
 
 @Component({
   selector: 'cfrb-agregar-maestro',
@@ -22,16 +20,17 @@ export class AgregarMaestroComponent implements OnInit {
   constructor(private maestroService: MaestroService, private router: Router) { }
 
   ngOnInit(): void {
-    
+
   }
 
-  fnAgregarMaestro(){
+  fnAgregarMaestro() {
     console.log('guardar', this.form);
-    if(this.form.valid) {
+    if (this.form.valid) {
       this.maestroService.save(this.model).subscribe((model) => {
         alert('maestro guardado');
         console.log(this.model);
         this.form.reset();
+        this.router.navigate([`maestros`]);
       });
     }
   }

@@ -28,21 +28,21 @@ export class MaestrosComponent implements OnInit {
   }
 
   onDeleteMaestro(maestro: Maestro) {
-    console.log('[Maestros]: delete, ', maestro);  
+    console.log('[Maestros]: delete, ', maestro);
     this.maestros = this.maestros.filter((m: Maestro) => {
       return m.id !== maestro.id;
-    })  
+    })
   }
 
   getMaestro() {
     this.maestroService.getMaestro()
-    .pipe(
-      tap(maestros => console.log('Maestros', maestros)),
-      catchError(error => {
-        this.mensajeError = error;
-        return EMPTY;
-      })
-    )
-    .subscribe((maestros: Maestro[]) => this.maestros = maestros);
+      .pipe(
+        tap(maestros => console.log('Maestros', maestros)),
+        catchError(error => {
+          this.mensajeError = error;
+          return EMPTY;
+        })
+      )
+      .subscribe((maestros: Maestro[]) => this.maestros = maestros);
   }
 }

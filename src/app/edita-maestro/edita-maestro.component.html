@@ -64,7 +64,7 @@
         <div class="mb-3">
             <label for="telefono">*Teléfono</label>
             <input 
-                type="number" 
+                type="text" 
                 class="form-control" 
                 id="telefono" 
                 name="telefono" 
@@ -72,37 +72,40 @@
                 [(ngModel)]="model.telefono"
                 #telefono="ngModel"
                 required
-                min="1"
-                max="999999999"                
-                step="1"
+                minlength="5"
+                maxlength="10"
             />
             <div *ngIf="telefono.invalid && (telefono.dirty || telefono.touched)">
                 <div *ngIf="telefono.errors?.required" class="alert alert-danger">
                     El campo teléfono es requerido
+                </div>
+                <div *ngIf="telefono.errors?.minlength" class="alert alert-danger">
+                    El campo teléfono debe tener al menos 10 caracteres
                 </div>
             </div>
         </div>
         <div class="mb-3">
             <label for="correo">*Correo</label>
             <input 
-                type="text" 
+                type="email" 
                 class="form-control" 
                 id="correo" 
                 name="correo" 
-                placeholder="Ingrese Correo"
+                placeholder="Ingrese Correo: name@example.com"
                 [(ngModel)]="model.correo"
                 #correo="ngModel"
                 required
                 maxlength="255"
             />
-            <div *ngIf="correo.invalid && (correo.dirty || correo.touched)" class="alert alert-danger">
-                El campo correo es requerido
+            <div *ngIf="correo.touched && correo.invalid" class="alert alert-danger">
+                <div *ngIf="correo.errors?.required">El campo correo es requerido</div>
+                <div *ngIf="correo.errors?.email">El campo correo debe ser una dirección de correo electrónico válida</div>
             </div>
         </div>
         <button type="submit" 
                 class="btn btn-primary"
                 (click)="fnGuardar()"
-                [disabled]="formAdd.form.invalid || formAdd.form.untouched">
+                [disabled]="!formAdd.form.valid">
                 Guardar
         </button>
       </form>

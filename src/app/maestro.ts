@@ -3,7 +3,7 @@ export interface Maestro {
     nombre?: string;
     apellidos?: string;
     edad?: number;
-    telefono?: number;
+    telefono?: string;
     correo?: string;
     created_at?: string;
     updated_at?: string;

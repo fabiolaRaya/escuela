@@ -10,6 +10,10 @@ import { EditaMaestroComponent } from './edita-maestro/edita-maestro.component';
 import { AgregarMaestroComponent } from './agregar-maestro/agregar-maestro.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HomeComponent } from './home/home.component';
+import { ClasesComponent } from './clases/clases.component';
+import { AccionesClaseComponent } from './acciones-clase/acciones-clase.component';
+import { AgregarClaseComponent } from './agregar-clase/agregar-clase.component';
+import { EditaClaseComponent } from './edita-clase/edita-clase.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +22,11 @@ import { HomeComponent } from './home/home.component';
     AccionesComponent,
     EditaMaestroComponent,
     AgregarMaestroComponent,
-    HomeComponent
+    HomeComponent,
+    ClasesComponent,
+    AccionesClaseComponent,
+    AgregarClaseComponent,
+    EditaClaseComponent
   ],
   imports: [
     BrowserModule,

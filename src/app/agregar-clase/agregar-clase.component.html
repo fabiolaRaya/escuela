@@ -1,0 +1,66 @@
+<div class="card">
+    <div class="card-header">
+        <h3>{{titulo}}</h3>
+    </div>
+</div>
+
+<div class="card-body">
+    <form #formAdd="ngForm">
+        <div class="mb-3">
+            <label for="nombre">*Nombre</label>
+            <input 
+                type="text" 
+                class="form-control" 
+                id="nombre" 
+                name="nombre" 
+                placeholder="Ingrese Nombre"
+                [(ngModel)]="model.nombre"
+                #nombre="ngModel"
+                required
+                maxlength="255"
+            />
+            <div class="valid-feedback">Campo OK</div>
+            <div class="invalid-feedback">Complete los datos</div>
+            <div *ngIf="nombre.invalid && (nombre.dirty || nombre.touched)" class="alert alert-danger">
+                El campo nombre es requerido
+            </div>
+        </div>
+        <div class="mb-3">
+            <label for="salon">*Salón</label>
+            <input 
+                type="text" 
+                class="form-control" 
+                id="salon" 
+                name="salon" 
+                placeholder="Ingrese Salón"
+                [(ngModel)]="model.salon"
+                #salon="ngModel"
+                required
+                maxlength="255"
+            />
+            <div *ngIf="salon.invalid && (salon.dirty || salon.touched)" class="alert alert-danger">
+                El campo salón es requerido
+            </div>
+        </div>
+        <div class="mb-3">
+            <label for="maestro_id">*Maestro</label>
+            <select
+                name="maestro_id"
+                id="maestro_id"
+                class="form-select" 
+                [(ngModel)]="model.maestro_id"
+                required
+            >
+            <option *ngFor="let maestro of maestros" value={{maestro.id}}>
+                {{maestro.nombre}} {{maestro.apellidos}}
+            </option>
+            </select>   
+        </div>
+        <button type="submit" 
+                class="btn btn-primary"
+                (click)="fnAgregarClase()"
+                [disabled]="formAdd.form.invalid || formAdd.form.untouched">
+                Guardar
+        </button>
+      </form>
+</div>

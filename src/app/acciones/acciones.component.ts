@@ -1,3 +1,5 @@
+import { Router } from '@angular/router';
+import { MaestroService } from './../maestro.service';
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Maestro } from '../maestro';
 
@@ -18,18 +20,25 @@ export class AccionesComponent implements OnInit {
   @Output()
   delete: EventEmitter<Maestro> = new EventEmitter<Maestro>();
 
-  constructor() { }
+  constructor(private maestroService: MaestroService, private router: Router) { }
 
   ngOnInit(): void {
   }
 
   editarMaestro(maestro: Maestro) {
-    console.log('Edit: ', maestro);   
-    this.edit.emit(maestro); 
+    console.log('Edit: ', maestro);
+    this.edit.emit(maestro);
   }
 
   eliminarMaestro(maestro: Maestro) {
-    console.log('Eliminar: ', maestro);    
-    this.delete.emit(maestro); 
+    if (confirm('¿Desea eliminar este registro?')) {
+      this.maestroService.delete(maestro)
+        .subscribe((data) => {
+          alert('Registro eliminado con éxito');
+          window.location.reload();
+        }, (error) => {
+          alert(error);
+        });
+    }
   }
 }

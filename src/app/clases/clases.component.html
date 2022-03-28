@@ -1,0 +1,48 @@
+<div class="card">
+    <div class="card-header">
+        <h3>{{titulo}}</h3>
+    </div>
+</div>
+
+<div class="card-body">
+    <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+        <button class="btn btn-primary" 
+                type="button"
+                [routerLink] = "['/clase/add']"
+        >Agregar clase</button>
+    </div>
+</div>
+
+<div *ngIf="clases && clases.length > 0" class="card-body">   
+    <table class="table table-success table-striped">
+        <thead>
+            <tr>
+                <th scope="col">Nombre</th>
+                <th scope="col">Salón</th>
+                <th scope="col">Maestro</th>
+                <th scope="col">Fecha creación</th>
+                <th scope="col">Fecha actualización</th>
+                <th scope="col">Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let clase of clases">
+                <td>{{clase.nombre}}</td>
+                <td>{{clase.salon}}</td>
+                <td>{{clase.nombre_maestro}}</td>
+                <td>{{clase.created_at | date: 'medium'}}</td>
+                <td>{{clase.updated_at | date: 'medium'}}</td>
+                <td>
+                    <cfrb-acciones-clase [clase]="clase"
+                        (edit)="onEditClase($event)"
+                        (delete)="onDeleteClase($event)"
+                    >
+                    </cfrb-acciones-clase>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+<div *ngIf="mensajeError" class="alert alert-danger" role="alert">
+    {{mensajeError}}
+</div>

@@ -4,17 +4,16 @@
     </div>
 </div>
 
-<div *ngIf="maestros && maestros.length > 0" class="card-body">
-
-    <div class="card-body">
-        <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-            <button class="btn btn-primary" 
-                    type="button"
-                    [routerLink] = "['/maestro/add']"
-            >Agregar maestro</button>
-        </div>
+<div class="card-body">
+    <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+        <button class="btn btn-primary" 
+                type="button"
+                [routerLink] = "['/maestro/add']"
+        >Agregar maestro</button>
     </div>
+</div>
 
+<div *ngIf="maestros && maestros.length > 0" class="card-body">   
     <table class="table table-success table-striped">
         <thead>
             <tr>
